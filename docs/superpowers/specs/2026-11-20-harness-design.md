@@ -120,3 +120,12 @@ There is no code, so verification is static:
 ## 9. Left to the builder
 
 Exact wording, section templates inside the modes, and the row format of the assumptions register.
+
+## 10. Changes after review (2026-11-20)
+
+- `CLAUDE.md` now imports `AGENTS.md` with `@AGENTS.md`; a bare file name did not load it.
+- Derived sources are listed in `config/project.yml` (`sources.derived`), so research in any format (the Gemini PDF) is covered; unlisted research in `docs/` counts as derived.
+- New marker `design-decision` for the author's own proposals.
+- `metrics` now loads the behavioral core like every other mode; no mode is delegated to a subagent by default.
+- Skill frontmatter reduced to fields known to work (`name`, `description`, `argument-hint`); the router reads `$ARGUMENTS`.
+- `README.md` is listed in the user layer as the project deliverable.

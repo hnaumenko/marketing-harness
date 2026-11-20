@@ -7,7 +7,8 @@
 | `modes/_profile.md` | Team and project narrative: who we are, stakeholders, constraints |
 | `modes/_custom.md` | House rules (procedural only, never factual claims) |
 | `config/*` | Project name, output language |
-| `docs/*` | Source documents, research, `assumptions.md` register, `decisions/` (ADRs), specs, plans |
+| `docs/*` | Source documents, research, `assumptions.md` register, `decisions/` (ADRs), diagrams, specs, plans |
+| `README.md` | Project deliverable (generated output); follows the same marker rules |
 
 ## System Layer (safe to auto-update)
 

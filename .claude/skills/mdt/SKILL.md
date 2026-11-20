@@ -5,17 +5,14 @@ description: >-
   wants an RFC or ADR, a risk check of AI-generated or cross-team code,
   confirmation of assumptions and sources, triage of incoming requests, a
   stakeholder message draft, or a review of team-value metrics.
-arguments: mode
-user_invocable: true
 argument-hint: "[rfc | adr | assumptions | review-ai-code | intake | stakeholder-msg | metrics]"
-license: MIT
 ---
 
 # mdt — Router
 
 ## Mode Routing
 
-Determine the mode from `$mode`:
+Determine the mode from the first word of `$ARGUMENTS`:
 
 | Input | Mode |
 |---|---|
@@ -28,7 +25,7 @@ Determine the mode from `$mode`:
 | `stakeholder-msg` | `stakeholder-msg` |
 | `metrics` | `metrics` |
 
-If `$mode` does not match a known mode, show discovery.
+If it does not match a known mode, show discovery.
 
 ## Discovery Mode (no arguments)
 
@@ -59,17 +56,11 @@ If `modes/_custom.md` exists, read it after `modes/_profile.md` and before the m
 
 Read `modes/_shared.md` + `modes/_profile.md` (if exists) + `modes/_custom.md` (if exists) + `modes/{mode}.md`.
 
-Applies to: `rfc`, `adr`, `assumptions`, `review-ai-code`, `intake`, `stakeholder-msg`.
+Applies to all modes: `rfc`, `adr`, `assumptions`, `review-ai-code`, `intake`, `stakeholder-msg`, `metrics`. (`metrics` needs the core too: it is where invented numbers do the most harm.)
 
-### Standalone modes (lighter context)
+### If a mode is run in a subagent
 
-Read `modes/_profile.md` (if exists) + `modes/_custom.md` (if exists) + `modes/{mode}.md`.
-
-Applies to: `metrics`.
-
-### Modes delegated to a subagent
-
-Inject file **contents** into the worker's prompt rather than relying on it to read files:
+No mode is delegated by default; run modes inline. If the user asks to run one in a subagent, inject file **contents** into the worker's prompt rather than relying on it to read files:
 
 ```python
 Agent(

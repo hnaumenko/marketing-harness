@@ -2,3 +2,8 @@ project:
   name: test-assignment
 language:
   output: ru
+sources:
+  derived:
+    - docs/claude-deep-research.md
+    - docs/open-ai-deep-research.md
+    - "docs/Server-Side Conversion Tracking-Gemini.pdf"

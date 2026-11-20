@@ -17,11 +17,13 @@ These files are the **only** sources for factual claims in user-facing output. S
 | House rules | `modes/_custom.md` (if exists) | ALWAYS — procedural only, never a source of claims |
 | Assumptions register | `docs/assumptions.md` | When a mode cites uncertain facts |
 | Accepted ADRs | `docs/decisions/` | When a mode touches an already-decided topic |
+| Derived research (narrative only) | `sources.derived` in `config/project.yml` | When a mode draws on research; every claim needs a marker |
 
 **RULE: Read `_profile.md` AFTER this file.** User customizations override defaults here.
 **RULE: Read `_custom.md` (if it exists) AFTER `_profile.md`.** It may override workflow and style defaults, never add factual claims.
 **RULE: Reformulate, never fabricate.** No backing in an in-scope file → ask the user; no answer → omit or log as an assumption.
-**RULE: Derived files are narrative only.** `docs/*-deep-research.md` claims need a provenance marker (syntax in `AGENTS.md`) before they are stated as fact.
+**RULE: Derived files are narrative only.** Claims from files listed under `sources.derived` in `config/project.yml` (and any unlisted research file in `docs/`) need a provenance marker (syntax in `AGENTS.md`) before they are stated as fact.
+**RULE: Own proposals are not facts.** The author's choices carry the `design-decision` marker and stay open until a reviewer approves them.
 
 ---
 

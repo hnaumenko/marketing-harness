@@ -4,7 +4,7 @@
 
 Two layers — full list in `DATA_CONTRACT.md`:
 
-- **User Layer (NEVER auto-updated; personalization goes HERE):** `modes/_profile.md`, `modes/_custom.md`, `config/*`, `docs/*`
+- **User Layer (NEVER auto-updated; personalization goes HERE):** `modes/_profile.md`, `modes/_custom.md`, `config/*`, `docs/*`, `README.md`
 - **System Layer (auto-updatable; DON'T put project data here):** `modes/_shared.md` and all other mode files, `AGENTS.md`, `CLAUDE.md`, `DATA_CONTRACT.md`, `.claude/skills/*`
 
 **THE RULE:** When the user asks to customize facts, targets, or narrative, write to `modes/_profile.md` or `config/project.yml`. For procedural house rules and workflow preferences, write to `modes/_custom.md`. NEVER put project-specific content in `modes/_shared.md` or any other system-layer file.
@@ -21,10 +21,13 @@ User-facing output (RFCs, ADRs, messages, metric reviews) is generated **exclusi
 - confirmed rows of `docs/assumptions.md`
 
 **Derived / narrative trust only (NOT fact-equivalent):**
-- `docs/claude-deep-research.md`, `docs/open-ai-deep-research.md` — AI-written research. A figure or API detail stated there may be wrong or invented, and once cited it can drift into "fact" with no path back to a source.
+- every file listed under `sources.derived` in `config/project.yml` (AI-written research in any format: Markdown, PDF, DOCX). A figure or API detail stated there may be wrong or invented, and once cited it can drift into "fact" with no path back to a source.
+- any research file in `docs/` that is not listed there is treated as derived too, until the user lists it.
 
 **Rule:** any quantified or factual claim from a derived file must trace to a primary file or carry a marker:
-`source: <file> | official-doc <URL, date> | user-stated YYYY-MM-DD | derived-unverified | user-cannot-confirm`.
+`source: <file> | official-doc <URL, date> | user-stated YYYY-MM-DD | derived-unverified | design-decision | user-cannot-confirm`.
+
+`design-decision` marks the author's own proposal (a choice, not a claim about the world). It is never a fact: it needs the reviewer's approval and stays `open` until then.
 Without a marker it is unconfirmed — never restate it as settled. Claims about external services need an official-doc URL and date, or are listed as assumptions.
 
 **Confirmation UX invariant:** never ask an unconfirmed claim as yes/no (a confirmed guess becomes a laundered fact). Offer four outcomes: (a) accurate, (b) correct the value, (c) narrative-only, (d) "I don't know" → durably `user-cannot-confirm`, never decaying back to "verified" on re-citation.
